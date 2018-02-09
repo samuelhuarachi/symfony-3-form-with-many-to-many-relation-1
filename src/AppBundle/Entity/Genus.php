@@ -57,6 +57,12 @@ class Genus
     private $firstDiscoveredAt;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="genus_scientist")
+     */
+    private $genusScientists;
+
+    /**
      * @ORM\Column(type="string", unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
@@ -71,6 +77,7 @@ class Genus
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->genusScientists = new ArrayCollection();
     }
 
     public function getId()

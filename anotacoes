@@ -1,0 +1,11 @@
+
+
+
+
+Assim que eu fiz o relacionamento many to many,
+eu rodei o comando abaixo
+./bin/console doctrine:schema:update --dump-sql
+
+
+
+
