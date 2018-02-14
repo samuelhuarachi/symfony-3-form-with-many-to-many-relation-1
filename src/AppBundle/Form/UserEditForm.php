@@ -26,7 +26,8 @@ class UserEditForm extends AbstractType
                 'class' => Genus::class,
                 'multiple' => true,
                 'expanded' => true,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'by_reference' => false
             ])
         ;
     }
