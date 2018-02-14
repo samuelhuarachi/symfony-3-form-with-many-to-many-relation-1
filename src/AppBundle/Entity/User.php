@@ -94,7 +94,7 @@ class User implements UserInterface
         return $this->studiedGenuses;
     }
 
-    
+
 
     public function getId()
     {
