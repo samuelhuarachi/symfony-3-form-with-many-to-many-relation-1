@@ -76,8 +76,7 @@ class User implements UserInterface
     private $universityName;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Genus", mappedBy="genusScientists")
-     * @ORM\OrderBy({"name" = "ASC"})
+     * @ORM\OneToMany(targetEntity="GenusScientist", mappedBy="user")
      */
     private $studiedGenuses;
 
