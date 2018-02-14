@@ -13,7 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class GenusScientistsEmbeddedForm extends AbstractType
 {
 
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
