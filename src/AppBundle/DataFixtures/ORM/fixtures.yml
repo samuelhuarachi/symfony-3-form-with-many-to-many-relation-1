@@ -6,7 +6,7 @@ AppBundle\Entity\Genus:
         funFact: <sentence()>
         isPublished: <boolean(75)>
         firstDiscoveredAt: <dateTimeBetween('-2000 years', 'now')>
-        genusScientists: '4x @user.aquanaut_*'
+        # genusScientists: '4x @user.aquanaut_*'
 
 AppBundle\Entity\GenusNote:
     genus.note_{1..100}:
