@@ -103,11 +103,19 @@ class User implements UserInterface
         }
 
         $this->studiedGenuses[] = $genus;
+
+        $genus->addGenusScientist($this);
     }
 
     public function removeStudiedGenus(Genus $genus)
     {
+        if(!$this->studiedGenuses->contains($genus))
+        {
+            return;
+        }
+
         $this->studiedGenuses->removeElement($genus);
+        $genus->removeGenusScientist($this);
     }
 
     public function getId()
