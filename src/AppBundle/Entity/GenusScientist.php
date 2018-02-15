@@ -34,13 +34,13 @@ class GenusScientist
     private $genus;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="studiedGenuses")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     private $yearsStudied;
@@ -80,7 +80,4 @@ class GenusScientist
     {
         $this->yearsStudied = $yearsStudied;
     }
-
-
-
 }

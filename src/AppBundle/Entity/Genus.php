@@ -211,4 +211,11 @@ class Genus
         // needed  to update the owing side of the relationship!
         $genusScientist->setGenus(null);
     }
+
+    public function getExpertScientists()
+    {
+        return $this->getGenusScientists()->filter(function(GenusScientist $genusScientist) {
+            return $genusScientist->getYearsStudied() > 20;
+        });
+    }
 }
