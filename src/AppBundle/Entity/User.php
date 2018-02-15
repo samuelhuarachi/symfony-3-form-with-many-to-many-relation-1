@@ -83,7 +83,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->studiedGenuses = new ArrayCollection();
-
     }
 
     /**

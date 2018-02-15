@@ -2,8 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Assinatura;
 use AppBundle\Entity\SubFamily;
 use AppBundle\Entity\User;
+use AppBundle\Repository\AssinaturaRepository;
 use AppBundle\Repository\SubFamilyRepository;
 use AppBundle\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,6 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class GenusFormType extends AbstractType
 {
@@ -50,6 +53,16 @@ class GenusFormType extends AbstractType
                 'allow_add' => true,
                 'by_reference' => false
             ])
+            ->add('genusCategorias', CollectionType::class, [
+                'entry_type' => GenusCategoriasEmbeddedForm::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false
+            ])
+            ->add('assinaturas', CollectionType::class, [
+                'entry_type' => GenusAssinaturasEmbeddedForm::class
+            ])
+
         ;
     }
 

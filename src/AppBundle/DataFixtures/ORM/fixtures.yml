@@ -41,3 +41,17 @@ AppBundle\Entity\GenusScientist:
         user: '@user.aquanaut_*'
         genus: '@genus_*'
         yearsStudied: <numberBetween(1, 30)>
+
+AppBundle\Entity\Categoria:
+    categoria_{1..10}:
+        name: <firstName()>
+
+AppBundle\Entity\Assinatura:
+    assinatura_{1..30}:
+        name: <firstName()>
+        genus: '@genus_*'
+
+AppBundle\Entity\GenusCategoria:
+    genus.categoria_{1..50}:
+        categoria: '@categoria_*'
+        genus: '@genus_*'

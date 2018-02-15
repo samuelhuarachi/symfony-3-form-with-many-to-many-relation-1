@@ -71,6 +71,28 @@ class Genus
     private $genusScientists;
 
     /**
+     * @ORM\OneToMany(
+     *     targetEntity="GenusCategoria",
+     *     mappedBy="genus",
+     *     fetch="EXTRA_LAZY",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     * @Assert\Valid()
+     */
+    private $genusCategorias;
+
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="Assinatura",
+     *     mappedBy="genus"
+     * )
+     */
+    private $assinaturas;
+
+
+    /**
      * @ORM\Column(type="string", unique=true)
      * @Gedmo\Slug(fields={"name"})
      */
@@ -86,6 +108,16 @@ class Genus
     {
         $this->notes = new ArrayCollection();
         $this->genusScientists = new ArrayCollection();
+        $this->genusCategorias = new ArrayCollection();
+        $this->assinaturas = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection|Assinaturas[]
+     */
+    public function getAssinaturas()
+    {
+        return $this->assinaturas;
     }
 
     public function getId()
@@ -226,4 +258,36 @@ class Genus
             GenusRepository::createExpertCriteria()
         );
     }
+
+    // >>>>>>>>>>>>.. Categoria <<<<<<<<<<<<<<<<<<
+
+    public function addGenusCategoria(GenusCategoria $genusCategoria)
+    {
+        if ($this->genusCategorias->contains($genusCategoria)) {
+            return;
+        }
+        $this->genusCategorias[] = $genusCategoria;
+        // needed  to update the owing side of the relationship!
+        $genusCategoria->setGenus($this);
+    }
+
+    public function removeGenusCategoria(GenusCategoria $genusCategoria)
+    {
+        if (!$this->genusCategorias->contains($genusCategoria)) {
+            return;
+        }
+        $this->genusCategorias->removeElement($genusCategoria);
+
+        // needed  to update the owing side of the relationship!
+        $genusCategoria->setGenus(null);
+    }
+
+    /**
+     * @return ArrayCollection|GenusCategoria[]
+     */
+    public function getGenusCategorias()
+    {
+        return $this->genusCategorias;
+    }
+
 }

@@ -61,5 +61,26 @@
     {# prevents weird label from showing up in new #}
     {{ form_widget(genusForm.genusScientists) }}
 
+    <h3>Categorias</h3>
+    <div class="row">
+        {% for genusCategoria in genusForm.genusCategorias %}
+            <div class="col-xs-4">
+                <a href="#" class="pull-right">
+                    <span class="fa fa-close"></span>
+                </a>
+                {{ form_row(genusCategoria.categoria) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <h3>Assinaturas</h3>
+    <div class="row">
+        {% for assinatura in genusForm.assinaturas %}
+            <div class="col-xs-4">
+                {{ form_row(assinatura.name) }}
+            </div>
+        {% endfor %}
+    </div>
+    <br>
     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 {{ form_end(genusForm) }}
