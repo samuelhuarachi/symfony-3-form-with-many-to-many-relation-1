@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Categoria
@@ -36,9 +36,31 @@ class Categoria
     private $categoriaGenuses;
 
 
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AssinaturaCategoria",
+     *     mappedBy="categoria",
+     *     fetch="EXTRA_LAZY",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     * @Assert\Valid()
+     */
+    private $categoriaAssinaturas;
+
+
     public function __construct()
     {
         $this->categoriaGenuses = new ArrayCollection();
+        $this->categoriaAssinaturas = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection|AssinaturaCategoria[]
+     */
+    public function getCategoriaAssinaturas()
+    {
+        return $this->categoriaAssinaturas;
     }
 
     /**

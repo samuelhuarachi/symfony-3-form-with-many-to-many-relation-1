@@ -40,6 +40,25 @@ class Assinatura
      */
     private $genus;
 
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AssinaturaCategoria",
+     *     mappedBy="assinatura",
+     *     fetch="EXTRA_LAZY",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     * @Assert\Valid()
+     */
+    private $assinaturaCategorias;
+
+
+    public function __construct()
+    {
+        $this->assinaturaCategorias = new ArrayCollection();
+    }
+
     public function getGenus()
     {
         return $this->genus;
@@ -49,7 +68,6 @@ class Assinatura
     {
         $this->genus = $genus;
     }
-
 
     /**
      * Get id.
@@ -83,6 +101,38 @@ class Assinatura
     public function getName()
     {
         return $this->name;
+    }
+
+
+    /** ************* ***** Manage as categorias, da assinatura  **** **** ***** *** */
+
+    public function addAssinaturaCategorias(AssinaturaCategoria $assinaturaCategoria)
+    {
+        if ($this->assinaturaCategorias->contains($assinaturaCategoria)) {
+            return;
+        }
+        $this->assinaturaCategorias[] = $assinaturaCategoria;
+        // needed  to update the owing side of the relationship!
+        $assinaturaCategoria->setAssinatura($this);
+    }
+
+    /**
+     * @return ArrayCollection|AssinaturaCategoria[]
+     */
+    public function getAssinaturaCategorias()
+    {
+        return $this->assinaturaCategorias;
+    }
+
+    public function removeAssinaturaCategorias(AssinaturaCategoria $assinaturaCategoria)
+    {
+        if (!$this->assinaturaCategorias->contains($assinaturaCategoria)) {
+            return;
+        }
+
+        $this->assinaturaCategorias->removeElement($assinaturaCategoria);
+        // needed  to update the owing side of the relationship!
+        $assinaturaCategoria->setAssinatura(null);
     }
 
 }
