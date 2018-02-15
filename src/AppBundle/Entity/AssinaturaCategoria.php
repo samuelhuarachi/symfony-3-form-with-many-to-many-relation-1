@@ -78,4 +78,9 @@ class AssinaturaCategoria
         $this->genus = $genus;
     }
 
+    public function __toString()
+    {
+        return  $this->categoria->getName();
+    }
+
 }
