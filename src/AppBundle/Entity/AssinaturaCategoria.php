@@ -22,7 +22,8 @@ class AssinaturaCategoria
     private $id;
 
     /**
-     * um one by one aqui talvez ...
+     * @ORM\ManyToOne(targetEntity="Genus")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $genus;
 

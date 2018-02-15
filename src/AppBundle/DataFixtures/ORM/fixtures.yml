@@ -49,9 +49,15 @@ AppBundle\Entity\Categoria:
 AppBundle\Entity\Assinatura:
     assinatura_{1..30}:
         name: <firstName()>
-        genus: '@genus_*'
+        genus: '@genus_1'
 
 AppBundle\Entity\GenusCategoria:
     genus.categoria_{1..50}:
         categoria: '@categoria_*'
         genus: '@genus_*'
+
+AppBundle\Entity\AssinaturaCategoria:
+    assinatura.categoria_{1..3}:
+        assinatura: '@assinatura_*'
+        categoria: '@categoria_*'
+        genus: '@genus_1'
