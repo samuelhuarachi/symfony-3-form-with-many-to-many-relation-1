@@ -28,7 +28,9 @@ class Assinatura
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message="A Assinatura não pode ficar em branco"
+     * )
      */
     private $name;
 
