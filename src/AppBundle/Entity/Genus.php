@@ -88,6 +88,7 @@ class Genus
      *     targetEntity="Assinatura",
      *     mappedBy="genus"
      * )
+     * @Assert\Valid()
      */
     private $assinaturas;
 
