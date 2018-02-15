@@ -62,7 +62,6 @@ class GenusFormType extends AbstractType
             ->add('assinaturas', CollectionType::class, [
                 'entry_type' => GenusAssinaturasEmbeddedForm::class
             ])
-
         ;
     }
 

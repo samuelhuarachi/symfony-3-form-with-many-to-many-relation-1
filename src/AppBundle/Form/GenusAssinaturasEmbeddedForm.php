@@ -4,6 +4,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Assinatura;
+use AppBundle\Entity\AssinaturaCategoria;
 use AppBundle\Entity\Genus;
 use AppBundle\Entity\GenusCategoria;
 use AppBundle\Entity\Categoria;
@@ -25,6 +26,12 @@ class GenusAssinaturasEmbeddedForm extends AbstractType
         $builder
             ->add('name', null, [
                 'label' => 'minha assinatura'
+            ])
+            ->add('assinaturaCategorias', EntityType::class, [
+                'placeholder' => 'Choose a Category',
+                'class' => Categoria::class,
+                'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }
